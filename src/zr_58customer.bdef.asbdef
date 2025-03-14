@@ -1,0 +1,47 @@
+managed implementation in class ZBP_R_58CUSTOMER unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_58CUSTOMER alias Customer
+persistent table Z58CUSTOMER
+draft table Z58CUSTOMER_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   CustomerId;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   CustomerId;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for Z58CUSTOMER
+  {
+    CustomerId = customer_id;
+    CustomerName = customer_name;
+    CustomerEmail = customer_email;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}

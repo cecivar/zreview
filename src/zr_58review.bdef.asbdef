@@ -1,0 +1,49 @@
+managed implementation in class ZBP_R_58REVIEW unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_58REVIEW alias Zr58review
+persistent table Z58REVIEW
+draft table Z58REVIEW_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   ReviewId;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   ReviewId;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for Z58REVIEW
+  {
+    ReviewId = review_id;
+    CustomerId = customer_id;
+    ProductId = product_id;
+    Stars = stars;
+    CustComment = cust_comment;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}

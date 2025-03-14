@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_58REVIEW_ENHANCEDTT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_58REVIEW_ENHANCEDTT'
+  }
+}
+define service ZUI_Z58REVIEW_ENHANCED_O4TT provider contracts odata_v4_ui {
+  expose ZC_58REVIEW_ENHANCEDTT;
+}
